@@ -1,0 +1,33 @@
+{
+  "name": "Homepage",
+  "layout": "theme",
+  "wrapper": "div#hp",
+  "sections": {
+    "hero-section": {
+      "type": "hero-section"
+    },
+    "features": {
+      "type": "features"
+    },
+    "shop-by-goal": {
+      "type": "shop-by-goal"
+    },
+    "science-section": {
+      "type": "science-section"
+    },
+    "endorsements": {
+      "type": "endorsements"
+    },
+    "socials": {
+      "type": "socials"
+    }
+  },
+  "order": [
+    "hero-section",
+    "features",
+    "shop-by-goal",
+    "science-section",
+    "endorsements",
+    "socials"
+  ]
+}

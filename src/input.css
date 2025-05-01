@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-brand-peach: #fd985f;
+  --color-brand-berry: #e359f5;
+  --color-brand-lemon: #ffd602;
+  --color-brand-blueberry: #7179e3;
+  --color-brand-apple: #00de01;
+
+  /* Neutral Colors */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-700: #374151;
+
+  /* Typography */
+  --font-family-sans: "Plus Jakarta Sans", sans-serif;
+
+  --font-line-height-120: leading-;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-family-sans);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: -0.02em;
+
+    @media (min-width: 640px) {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 3rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 3.5rem;
+    }
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: -0.02em;
+
+    @media (min-width: 640px) {
+      font-size: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 2.25rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5em;
+
+    @media (min-width: 640px) {
+      font-size: 1.125rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5em;
+    opacity: 0.9;
+
+    @media (min-width: 640px) {
+      font-size: 1.0625rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.125rem;
+    }
+  }
+}
+
+/* finish this tailwind compontent then  */
+@layer components {
+  .my-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @media (min-width: 40rem /* 640px */) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media (min-width: 64rem /* 1024px */) {
+      max-width: 64rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    @media (min-width: 80rem /* 1280px */) {
+      max-width: 80rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    @media (min-width: 96rem /* 1536px */) {
+      max-width: 96rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  .section-padding {
+    padding-top: 3rem; /* 48px */
+    padding-bottom: 3rem; /* 48px */
+
+    @media (min-width: 40rem /* 640px */) {
+      padding-top: 4rem; /* 64px */
+      padding-bottom: 4rem;
+    }
+
+    @media (min-width: 64rem /* 1024px */) {
+      padding-top: 5rem; /* 80px */
+      padding-bottom: 5rem;
+    }
+
+    @media (min-width: 80rem /* 1280px */) {
+      padding-top: 6rem; /* 96px */
+      padding-bottom: 6rem;
+    }
+  }
+
+  .logo {
+    max-width: 7.5rem;
+  }
+
+  .navlink {
+    @apply text-gray-800 hover:text-gray-900 no-underline transition-colors duration-200;
+  }
+
+  /* Accordion Styles */
+  .accordion-content {
+    transition: all 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .accordion-content:not(.hidden) {
+    max-height: 500px; /* Adjust based on content */
+  }
+
+  .accordion-icon.rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  /* Your custom rounded borders */
+  .accordion-item {
+    border: 1px solid black;
+    border-radius: 8px 52px 52px 8px;
+    overflow: hidden;
+  }
+}

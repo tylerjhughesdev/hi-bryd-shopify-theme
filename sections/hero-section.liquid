@@ -1,0 +1,46 @@
+<section class="relative w-full h-[70vh] overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="{{ 'hero-image2.webp' | file_url }}"
+      class="w-full h-full object-cover object-top-right"
+      style="object-position: right center;"
+      loading="eager"
+      alt="Hero image description">
+  </div>
+
+
+  <!-- Responsive Gradient Overlay -->
+  <div class="absolute z-10 inset-0 
+              bg-gradient-to-t from-black/100 to-transparent
+              
+              md:bg-gradient-to-r md:from-black/100 md:to-transparent">
+</div>
+
+  <!-- Content Container -->
+  <div class="relative z-20 h-full flex items-end pb-12
+              md:items-center md:pb-0">
+    <div class="my-container">
+      {% render 'trust-pilot' %}
+      <h1 class="text-white mb-4">Fuel Your Mind & Body.<br> Without Compromise.</h1>
+      <p class="max-w-85 text-white mb-8">Science-backed supplements for athletes who train hard and think harder</p>
+      <div class="flex gap-4">
+        {% render 'button'
+          , text: 'Take The Quiz'
+          , icon: 'icon-arrow'
+          , style: 'primary'
+          , size: 'base'
+          , theme: 'light' %}
+
+
+        {% render 'button'
+          , text: 'Shop All'
+          , icon: 'icon-arrow'
+          , style: 'secondary'
+          , size: 'base'
+          , theme: 'light' %}
+      </div>
+    </div>
+  </div>
+
+</section>

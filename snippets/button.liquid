@@ -1,0 +1,76 @@
+{% comment %} Usage:
+        {% render 'butt2on',
+          text: 'Click me',
+          link: '/collections/all',
+          icon: 'icon-arrow',
+          style: 'primary',
+          size: 'base',
+          theme: 'light',
+          full_width: false
+    %} {% endcomment %}
+
+
+{%- assign btn_style = style | default: 'primary' -%}
+{%- assign btn_size = size | default: 'base' -%}
+{%- assign btn_theme = theme | default: 'light' -%}
+{%- assign is_full_width = full_width | default: false -%}{%- assign href = link | default: nil -%}
+
+{%- comment -%} Base Button Classes {%- endcomment -%}
+{%- assign base_classes = 'inline-flex items-center justify-center font-medium rounded-3xl transition-colors duration-200 focus:outline-none cursor-pointer' -%}
+
+{%- comment -%} Full Width Logic {%- endcomment -%}
+{%- if is_full_width == true or is_full_width == 'true' -%}
+  {%- assign base_classes = base_classes | append: ' w-full' -%}
+{%- endif -%}
+
+{%- comment -%} Size Classes {%- endcomment -%}
+{%- if btn_size == 'lg' -%}
+  {%- assign size_classes = 'px-7 py-3 text-base' -%}
+{%- else -%}
+  {%- assign size_classes = 'px-5 py-2.5 text-sm' -%}
+{%- endif -%}
+
+{%- comment -%} Color/Theme Classes {%- endcomment -%}
+{%- if btn_style == 'primary' -%}
+  {%- if btn_theme == 'light' -%}
+    {%- assign color_classes = 'bg-white text-gray-800 hover:bg-gray-100' -%}
+  {%- else -%}
+    {%- assign color_classes = 'bg-black text-white hover:bg-gray-900' -%}
+  {%- endif -%}
+{%- elsif btn_style == 'secondary' -%}
+  {%- if btn_theme == 'light' -%}
+    {%- assign color_classes = 'border border-white text-white hover:bg-white hover:text-gray-800' -%}
+  {%- else -%}
+    {%- assign color_classes = 'border border-black text-gray-300 hover:bg-gray-700 hover:text-white' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} Render Button with Optional Link Wrapper {%- endcomment -%}
+{%- if href != nil -%}
+  <a href="{{ href }}" class="inline-block hover:no-underline focus:no-underline">
+{%- endif -%}
+
+<button
+  type="{% if href %}button{% else %}submit{% endif %}"
+  class="{{ base_classes }} {{ size_classes }} {{ color_classes }}"
+  {% if href %}
+  aria-label="{{ text | escape }}"
+  {% endif %}>
+  <span>{{ text }}</span>
+  {%- if icon -%}
+    <span class="ml-2">
+      {%- case icon -%}
+        {%- when 'icon-arrow' -%}
+          {% render 'icon-arrow' %}
+        {%- when 'icon-cart' -%}
+          {% render 'icon-cart' %}
+        {%- when 'icon-book' -%}
+          {% render 'icon-book' %}
+      {%- endcase -%}
+    </span>
+  {%- endif -%}
+</button>
+
+{%- if href != nil -%}
+  </a>
+{%- endif -%}

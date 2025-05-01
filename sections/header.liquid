@@ -1,0 +1,303 @@
+<!-- Backdrop -->
+<div id="backdrop" class="fixed inset-0 bg-black opacity-80 backdrop-blur-3xl z-40 hidden"></div>
+
+<!-- Promo Bar -->
+<div class="bg-brand-apple text-sm text-black font-bold uppercase py-2 relative z-30 flex justify-center">
+  <a href="">Use code hi20 for 20% off</a>
+</div>
+
+<!-- Navbar -->
+<header class="w-full border-b border-gray-300 relative z-30 bg-white">
+  <div class="my-container flex items-center justify-between p-4 relative z-30">
+    <!-- Left section -->
+    <div class="flex items-center space-x-4">
+      <!-- Hamburger - Mobile only -->
+      <button id="open-mobilemenu" class="lg:hidden cursor-pointer">
+        {% render 'icon-header-ham' %}
+      </button>
+
+      <a href="/">
+        <img
+          class="logo"
+          src="https://cdn.shopify.com/s/files/1/0931/2324/8473/files/Logo_3a2dbf94-85b2-470f-9034-4875a25c56b3.svg?v=1744210638"
+          alt="logo">
+      </a>
+    </div>
+
+    <!-- Center links - Desktop only -->
+    <nav class="hidden lg:flex space-x-8">
+      {% for link in linklists.main-menu.links %}
+        {% if link.links != blank %}
+          <a
+            id="dropdown-link"
+            href="{{link.url}}"
+            class="navlink flex items-center gap-1.5">{{ link.title }}{% render 'icon-chevron-down' %}</a>
+        {% else %}
+          <a href="{{link.url}}" class="navlink">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <!-- Right section -->
+    <div class="flex items-center space-x-4">
+      <button href="{{ routes.account_url }}" class="cursor-pointer">
+        {% render 'icon-header-account' %}
+      </button>
+      <button id="open-cart" class="relative cursor-pointer">
+        {% render 'icon-header-cart' %}
+        <span class="absolute -top-2 -right-2 bg-brand-berry text-white text-xs rounded-full h-5 w-5 flex items-center justify-center cart-count">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mega Nav - Desktop only -->
+  <div id="mega-nav" class="hidden absolute left-0 w-full h-80 bg-gray-50 shadow-lg z-20">
+    <div class="my-container mx-auto px-4 py-6">
+      <div class="flex h-full flex-row">
+        <!-- Left Menu Area -->
+        <div class="flex-non h-full">
+          {% assign shop_link = linklists.main-menu.links | where: "title", "Shop" | first %}
+          {% if shop_link %}
+            <div class="flex h-full">
+              <div class="flex-shrink-0 pr-8 border-r border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <!-- Column 1: Basic child links -->
+                  <div class="flex flex-col gap-2">
+                    {% for item in shop_link.links %}
+                      {% if item.links == empty %}
+                        <a href="{{ item.url }}" class="text-sm text-left py-2 text-gray-700 hover:underline">
+                          {{ item.title }}
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  <!-- Column 2: Shop by Goal -->
+                  <div class="flex flex-col gap-2">
+                    {% assign shop_by_goal = shop_link.links | where: "title", "Shop by goal" | first %}
+                    {% if shop_by_goal %}
+                      <h5 class="text-sm font-bold py-2 opacity-30">{{ shop_by_goal.title }}</h5>
+                      {% for goal in shop_by_goal.links %}
+                        <a href="{{ goal.url }}" class="text-sm text-left py-2 text-gray-700 hover:underline">
+                          {{ goal.title }}
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+
+                  <!-- Column 3: Shop by Product -->
+                  <div class="flex flex-col gap-2">
+                    {% assign shop_by_product = shop_link.links | where: "title", "Shop by product" | first %}
+                    {% if shop_by_product %}
+                      <h5 class="text-sm font-bold py-2 opacity-30">{{ shop_by_product.title }}</h5>
+                      {% for product in shop_by_product.links %}
+                        <a href="{{ product.url }}" class="text-sm text-left py-2 text-gray-700 hover:underline">
+                          {{ product.title }}
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Right Panel -->
+        <div class="flex-grow h-full px-4">
+          <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 h-full gap-6">
+            <!-- First Card -->
+            <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] cursor-pointer">
+              <img
+                class="w-full h-40 object-cover"
+                src="https://cdn.shopify.com/s/files/1/0931/2324/8473/files/peach-citrus-feature.webp?v=1743872121"
+                alt="Product Image">
+              <div class="p-4">
+                <h3 class="text-base font-semibold text-gray-900 mb-1">Shop Bundles</h3>
+                <a href="#" class="inline-flex items-center text-sm font-medium text-orange-600 hover:underline">
+                  Explore Now
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Second Card -->
+            <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] cursor-pointer">
+              <img
+                class="w-full h-40 object-cover"
+                src="https://cdn.shopify.com/s/files/1/0931/2324/8473/files/peach-citrus-feature.webp?v=1743872121"
+                alt="Product Image">
+              <div class="p-4">
+                <h3 class="text-base font-semibold text-gray-900 mb-1">New Arrivals</h3>
+                <a href="#" class="inline-flex items-center text-sm font-medium text-orange-600 hover:underline">
+                  Discover
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Sidebar -->
+<div id="mobile-menu" class="fixed inset-y-0 left-0 w-80 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 lg:hidden z-50 overflow-y-auto">
+  <!-- Mobile Menu Header with Logo and Close Button -->
+  <div class="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+    <a href="/">
+      <img
+        class="logo"
+        src="https://cdn.shopify.com/s/files/1/0931/2324/8473/files/Logo_3a2dbf94-85b2-470f-9034-4875a25c56b3.svg?v=1744210638"
+        alt="logo">
+    </a>
+    <button id="close-mobilemenu" class="text-gray-500 hover:text-gray-700">
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Content -->
+  <div class="p-4 space-y-4">
+    {% assign shop = linklists.main-menu.links | where: "title", "Shop" | first %}
+      {% if shop %}
+      <!-- Shop by Goal -->
+      {% assign shop_by_goal = shop.links | where: "title", "Shop by goal" | first %}
+      {% if shop_by_goal %}
+        <div class="border-b border-gray-100 pb-2">
+          <button class="toggle-submenu w-full flex justify-between items-center py-3 text-gray-900 font-medium">
+            <span>Shop by Goal</span>
+            {% render 'icon-chevron-down' %}
+          </button>
+          <div class="sub-menu hidden space-y-3 pl-4 pt-1 pb-2">
+            {% for goal in shop_by_goal.links %}
+              <a href="{{ goal.url }}" class="block text-sm text-gray-700 hover:text-brand-apple">{{ goal.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
+    {% endif %}
+
+      <!-- Shop by Product -->
+      {% assign shop_by_product = shop.links | where: "title", "Shop by product" | first %}
+      {% if shop_by_product %}
+        <div class="border-b border-gray-100 pb-2">
+          <button class="toggle-submenu w-full flex justify-between items-center py-3 text-gray-900 font-medium">
+            <span>Shop by Product</span>
+            {% render 'icon-chevron-down' %}
+          </button>
+          <div class="sub-menu hidden space-y-3 pl-4 pt-1 pb-2">
+            {% for product in shop_by_product.links %}
+              <a href="{{ product.url }}" class="block text-sm text-gray-700 hover:text-brand-apple">{{ product.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Other Shop Items -->
+      {% for other in shop.links %}
+        {% unless other.title == "Shop by goal" or other.title == "Shop by product" %}
+          <div class="border-b border-gray-100 pb-2">
+            <a href="{{ other.url }}" class="block py-3 text-gray-900 font-medium">{{ other.title }}</a>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+
+    <!-- Static Pages -->
+    <div class="border-b border-gray-100 pb-2">
+      <a href="/pages/why-hibryd" class="block py-3 text-gray-900 font-medium">Why HI°BRYD</a>
+    </div>
+    <div class="border-b border-gray-100 pb-2">
+      <a href="/pages/learn" class="block py-3 text-gray-900 font-medium">Learn</a>
+    </div>
+
+    <!-- Account -->
+    <div class="border-b border-gray-100 pb-2">
+      <a href="{{ routes.account_url }}" class="block py-3 text-gray-900 font-medium">Account</a>
+    </div>
+
+    <!-- Featured Quiz Card -->
+    <div class="p-4 bg-gray-50 rounded-lg mt-4">
+      <h4 class="font-bold text-sm mb-1">Take the Quiz</h4>
+      <p class="text-xs text-gray-600 mb-2">Find the right stack for your goals</p>
+      <a href="/pages/quiz" class="inline-block bg-brand-apple text-white px-3 py-2 text-xs rounded hover:bg-opacity-90 transition">Start Quiz</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="fixed inset-y-0 right-0 w-80 bg-gray-100 shadow-lg transform translate-x-full transition-transform duration-300 z-40">
+
+  <!-- Top -->
+  <div class="flex items-center justify-between px-4 py-3 border-b">
+    <div class="text-lg font-semibold">Your Cart (<span class="cart-count">0</span>)</div>
+    <button class="text-gray-500 hover:text-gray-700 cart-close">
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="px-4 py-6">
+    <!-- Cart Items -->
+    <div class="divide-y cart-items-container">
+      <!-- Cart items will be loaded here via JavaScript -->
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="border-t mt-6 pt-6">
+      <div class="flex justify-between text-base font-medium text-gray-900">
+        <p>Subtotal</p>
+        <p class="cart-total">$0.00</p>
+      </div>
+      <p class="mt-1 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+      <div class="mt-6">
+        <a href="{{ routes.cart_url }}" class="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Checkout</a>
+      </div>
+      <div class="mt-4 flex justify-center text-sm text-gray-500">
+        <p>
+          or
+          <button class="text-indigo-600 font-medium hover:text-indigo-500 continue-shopping">Continue Shopping</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

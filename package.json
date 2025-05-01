@@ -1,0 +1,29 @@
+{
+  "name": "elizabeth_clean-1",
+  "version": "1.0.0",
+  "description": "[![Generic badge](https://img.shields.io/badge/course%20available%3F-yes-green.svg)](https://shields.io/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/application.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polidario/Elizabeth_Clean.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polidario/Elizabeth_Clean/issues"
+  },
+  "homepage": "https://github.com/polidario/Elizabeth_Clean#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "swiper": "^11.2.6",
+    "tailwindcss": "^4.1.4"
+  },
+  "devDependencies": {
+    "prettier-plugin-liquid": "^0.0.1-security"
+  }
+}

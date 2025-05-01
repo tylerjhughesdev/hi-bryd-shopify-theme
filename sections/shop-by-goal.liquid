@@ -1,0 +1,55 @@
+<section class="section-padding">
+  <div class="my-container">
+    <h2 class="mb-7">Shop by goal</h2>
+
+    {% assign shop = linklists.main-menu.links | where: "title", "Shop" | first %}
+    {% if shop %}
+      <!-- Shop by Goal -->
+      {% assign shop_by_goal = shop.links | where: "title", "Shop by goal" | first %}
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% if shop_by_goal %}
+          {% for goal in shop_by_goal.links %}
+            {% assign collection_handle = goal.url | split: '/' | last %}
+            {% assign collection = collections[collection_handle] %}
+
+              <div class="relative h-[280px] border-1 border-black rounded-lg overflow-hidden group">
+              <!-- Background Image with Gradient Overlay -->
+              <div class="absolute inset-0">
+                {% if collection.image %}
+                  <img
+                    src="{{ collection.image | img_url: '800x' }}"
+                    alt="{{ collection.title }}"
+                    class="w-full h-full object-cover"
+                    loading="lazy">
+                {% else %}
+                  <div class="w-full h-full bg-gray-200"></div>
+                {% endif %}
+                <!-- White Gradient Overlay (Bottom) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-white/100 to-transparent via-white/10 via-30%"></div>
+              </div>
+
+              <!-- Button/Link -->
+              <div class="absolute bottom-4 left-4 z-10">
+                {% capture button_text %}Shop {{ goal.title }}{% endcapture %}
+                {% render 'button'
+                  , text: button_text
+                  , link: goal.url
+                  , icon: 'icon-arrow'
+                  , style: 'primary'
+                  , theme: 'dark'
+                %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% comment %} <a href="{{ goal.url }}" class="inline-block px-6 py-3 bg-black text-white hover:bg-gray-800 rounded-md transition-all duration-300 transform group-hover:scale-105">
+                            Shop {{ goal.title }}
+
+                            
+                </a> {% endcomment %}
