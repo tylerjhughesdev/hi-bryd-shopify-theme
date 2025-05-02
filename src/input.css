@@ -172,4 +172,28 @@
     border-radius: 8px 52px 52px 8px;
     overflow: hidden;
   }
+
+  /* Swiper */
+
+  .swiper {
+    @apply overflow-hidden; /* Ensures slides stay contained */
+  }
+
+  .swiper-slide {
+    @apply h-auto flex-shrink-0; /* Prevents squishing slides */
+  }
+
+  /* Optional: Style pagination/navigation to match your theme */
+  .swiper-pagination-bullet {
+    @apply bg-gray-400 opacity-100;
+  }
+
+  .swiper-pagination-bullet-active {
+    @apply bg-blue-500;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    @apply text-black hover:text-blue-500;
+  }
 }
